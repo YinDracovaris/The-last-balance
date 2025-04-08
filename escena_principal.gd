@@ -14,22 +14,23 @@ func _process(delta):
 
 func _verificar_ataque(posicion_ataque):
 	print("Verificando si hay enemigos en:", posicion_ataque)
-	for enemigo in enemigos:
-		print("Revisando enemigo en:", enemigo.position)
-		if enemigo.position == posicion_ataque:
-			print("Enemigo alcanzado, aplicando daño.")
-			enemigo.recibir_daño(50)
+	if enemigos.size() > 0:
+		for enemigo in enemigos:
+			print("Revisando enemigo en:", enemigo.position)
+			if enemigo.position == posicion_ataque:
+				print("Enemigo alcanzado, aplicando daño.")
+				enemigo.recibir_daño(50)
 
 func es_posicion_valida(pos: Vector2) -> bool:
 	# Evita que el protagonista se mueva a donde hay enemigos
-	if items.size() > 1:
+	if enemigos.size() > 0:
 		for enemigo in enemigos:
 			if enemigo.position == pos:
 				print("Posición ocupada por enemigo en:", enemigo.position)
 				return false
 	
 	# Verifica si hay un objeto en la casilla
-	if items.size() > 1:
+	if items.size() > 0:
 		for item in items:
 			if item.position == pos:
 				print("Posición contiene un power-up en:", item.position)

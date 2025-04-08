@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ci608cu2w8he5"]
 
-[ext_resource type="Texture2D" uid="uid://3k4ulilypds6" path="res://art/fondo principal.png" id="1_ba235"]
+[ext_resource type="Texture2D" uid="uid://3k4ulilypds6" path="res://Art/fondo principal.png" id="1_ba235"]
 [ext_resource type="FontFile" uid="uid://o80mfqk5bsi0" path="res://fonts/aAsianNinja.ttf" id="2_5dpk2"]
 
 [node name="MenuPrincipal" type="Control"]
