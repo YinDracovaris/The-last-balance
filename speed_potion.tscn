@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhovebs1a7sm1"]
+
+[ext_resource type="Script" uid="uid://c8th1r87buyru" path="res://speed_potion.gd" id="1_a6fp3"]
+[ext_resource type="Texture2D" uid="uid://4aiws02gk75i" path="res://Art/speed.png" id="1_tbkvh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6fp3"]
+size = Vector2(64, 64)
+
+[node name="speed_potion" type="Area2D"]
+script = ExtResource("1_a6fp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(30, 33)
+scale = Vector2(1.59375, 1.53125)
+texture = ExtResource("1_tbkvh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(33, 33)
+shape = SubResource("RectangleShape2D_a6fp3")
+metadata/_edit_lock_ = true
