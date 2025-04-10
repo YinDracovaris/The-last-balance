@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj63spm08d11c"]
+
+[ext_resource type="Script" uid="uid://ynf1wc7ibpjf" path="res://menu_configuracion.gd" id="1_nrkuo"]
+[ext_resource type="Texture2D" uid="uid://3k4ulilypds6" path="res://Art/fondo principal.png" id="1_yxxgj"]
+[ext_resource type="FontFile" uid="uid://o80mfqk5bsi0" path="res://fonts/aAsianNinja.ttf" id="2_nrkuo"]
+
+[node name="Menu_Configuracion" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_nrkuo")
+
+[node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = -193.0
+offset_right = 1280.0
+offset_bottom = 1024.0
+texture = ExtResource("1_yxxgj")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 391.0
+offset_top = 21.0
+offset_right = 884.0
+offset_bottom = 116.0
+
+[node name="Titulo_Juego" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 358.0
+offset_top = 19.0
+offset_right = 877.0
+offset_bottom = 109.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_nrkuo")
+theme_override_font_sizes/font_size = 64
+text = "Configuración"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu_Opciones" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 322.0
+offset_top = 170.0
+offset_right = 922.0
+offset_bottom = 605.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Btn_Restaurar" type="Button" parent="Menu_Opciones"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nrkuo")
+theme_override_font_sizes/font_size = 48
+text = "Restaurar predeterminado"
+
+[node name="Btn_Regresar" type="Button" parent="Menu_Opciones"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nrkuo")
+theme_override_font_sizes/font_size = 48
+text = "Regresar"
+
+[connection signal="button_up" from="Menu_Opciones/Btn_Restaurar" to="." method="_on_btn_restaurar_button_up"]
+[connection signal="button_up" from="Menu_Opciones/Btn_Regresar" to="." method="_on_btn_regresar_button_up"]
