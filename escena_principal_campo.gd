@@ -6,6 +6,8 @@ extends Node2D
 
 func _ready():
 	protagonista.connect("ataque_realizado", Callable(self, "_verificar_ataque"))
+	protagonista.connect("ataque_realizado2", Callable(self, "_verificar_ataque2"))
+	protagonista.connect("ataque_realizado3", Callable(self, "_verificar_ataque3"))
 	print("Escena inicializada. Protagonista en:", protagonista.position)
 
 func _process(delta):
@@ -20,6 +22,24 @@ func _verificar_ataque(posicion_ataque):
 			if enemigo.position == posicion_ataque:
 				print("Enemigo alcanzado, aplicando daño.")
 				enemigo.recibir_daño(50)
+				
+func _verificar_ataque2(posicion_ataque):
+	print("Verificando si hay enemigos en:", posicion_ataque)
+	if enemigos.size() > 0:
+		for enemigo in enemigos:
+			print("Revisando enemigo en:", enemigo.position)
+			if enemigo.position == posicion_ataque:
+				print("Enemigo alcanzado, aplicando daño.")
+				enemigo.recibir_daño(100)
+				
+func _verificar_ataque3(posicion_ataque):
+	print("Verificando si hay enemigos en:", posicion_ataque)
+	if enemigos.size() > 0:
+		for enemigo in enemigos:
+			print("Revisando enemigo en:", enemigo.position)
+			if enemigo.position == posicion_ataque:
+				print("Enemigo alcanzado, aplicando daño.")
+				enemigo.recibir_daño(200)
 
 func es_posicion_valida(pos: Vector2) -> bool:
 	# Evita que el protagonista se mueva a donde hay enemigos

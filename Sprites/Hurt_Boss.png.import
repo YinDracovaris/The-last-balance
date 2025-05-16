@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://s5eutrcyh834"
-path="res://.godot/imported/Walk_Enemy.png-00c30371bdac6025304dbeaec419d1d6.ctex"
+uid="uid://tp3o3gk6yl3x"
+path="res://.godot/imported/Hurt_Boss.png-8057e1bae9374117dd80701c1fac7995.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Walk_Enemy.png"
-dest_files=["res://.godot/imported/Walk_Enemy.png-00c30371bdac6025304dbeaec419d1d6.ctex"]
+source_file="res://Sprites/Hurt_Boss.png"
+dest_files=["res://.godot/imported/Hurt_Boss.png-8057e1bae9374117dd80701c1fac7995.ctex"]
 
 [params]
 

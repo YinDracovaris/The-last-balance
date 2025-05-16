@@ -11,6 +11,8 @@ var pasos_extra: int = 1  # Multiplicador de movimiento normal (1 casilla)
 var turnos_restantes: int = 0  # Turnos con el efecto activo
 
 signal ataque_realizado(posicion_ataque)
+signal ataque_realizado2(posicion_ataque)
+signal ataque_realizado3(posicion_ataque)
 
 func _ready():
 	objetivo = position.snapped(grid_size)  # Asegurar que empiece en la cuadrícula
@@ -28,6 +30,10 @@ func _input(event):
 			mover(Vector2(1, 0))
 		elif event.keycode == KEY_F:
 			atacar()
+		elif event.keycode == KEY_E:
+			atacar2()
+		elif event.keycode == KEY_Q:
+			atacar3()
 
 func mover(direccion: Vector2):
 	var nueva_posicion = objetivo + direccion * grid_size * pasos_extra
@@ -58,6 +64,22 @@ func atacar():
 	var posicion_ataque = position + Vector2(grid_size.x, 0)
 	print("Atacando en posición:", posicion_ataque)
 	emit_signal("ataque_realizado", posicion_ataque)
+	
+func atacar2():
+	print("Función atacar2() llamada")
+	sprite.play("Attack")
+	await sprite.animation_finished  # Espera a que termine la animación
+	var posicion_ataque = position + Vector2(grid_size.x, 0)
+	print("Atacando en posición:", posicion_ataque)
+	emit_signal("ataque_realizado2", posicion_ataque)
+	
+func atacar3():
+	print("Función atacar2() llamada")
+	sprite.play("Attack")
+	await sprite.animation_finished  # Espera a que termine la animación
+	var posicion_ataque = position + Vector2(grid_size.x, 0)
+	print("Atacando en posición:", posicion_ataque)
+	emit_signal("ataque_realizado3", posicion_ataque)
 
 # Método para recibir el efecto del objeto
 func activar_powerup():
