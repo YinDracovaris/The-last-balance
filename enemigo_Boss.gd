@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var vida: int = 50
+@export var vida: int = 500
 @onready var sprite = $AnimatedSprite2D
 
 func _ready():

@@ -1,10 +1,27 @@
-[gd_scene load_steps=22 format=3 uid="uid://bpbl35lsdheff"]
+[gd_scene load_steps=29 format=3 uid="uid://bpbl35lsdheff"]
 
-[ext_resource type="Script" uid="uid://bm0f3lsrccml4" path="res://enemigo_1.gd" id="1_1x3o7"]
+[ext_resource type="Script" uid="uid://bm0f3lsrccml4" path="res://enemigo_2.gd" id="1_1x3o7"]
 [ext_resource type="Texture2D" uid="uid://cuvnbhgswibb5" path="res://Sprites/Deat_Enemy.png" id="2_kdgmj"]
 [ext_resource type="Texture2D" uid="uid://cdk60hhlkhbo7" path="res://Sprites/Hurt_Enemy.png" id="3_jh6hw"]
 [ext_resource type="Texture2D" uid="uid://ts7y0en3ooa5" path="res://Sprites/Idle_Enemy.png" id="4_akb6v"]
-[ext_resource type="Texture2D" uid="uid://cl1uynarc7d3b" path="res://Sprites/Walk_Enemy.png" id="5_av2h6"]
+[ext_resource type="Texture2D" uid="uid://s5eutrcyh834" path="res://Sprites/Walk_Enemy.png" id="5_av2h6"]
+[ext_resource type="FontFile" uid="uid://o80mfqk5bsi0" path="res://fonts/aAsianNinja.ttf" id="6_kdgmj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdgmj"]
+atlas = ExtResource("5_av2h6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jh6hw"]
+atlas = ExtResource("5_av2h6")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akb6v"]
+atlas = ExtResource("5_av2h6")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_av2h6"]
+atlas = ExtResource("5_av2h6")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3r7sg"]
 atlas = ExtResource("2_kdgmj")
@@ -64,6 +81,23 @@ region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8jufk"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdgmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jh6hw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akb6v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_av2h6")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3r7sg")
@@ -130,6 +164,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bop0t"]
 size = Vector2(64, 64)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jh6hw"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akb6v"]
+bg_color = Color(0.870251, 0.0988599, 1.92523e-07, 1)
+
 [node name="Enemigo1" type="CharacterBody2D"]
 position = Vector2(13, 0)
 script = ExtResource("1_1x3o7")
@@ -138,9 +178,39 @@ script = ExtResource("1_1x3o7")
 position = Vector2(28, 23)
 scale = Vector2(1.99219, 1.82422)
 sprite_frames = SubResource("SpriteFrames_8jufk")
-animation = &"Hurt"
+animation = &"Attack"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(28, 32)
 shape = SubResource("RectangleShape2D_bop0t")
+
+[node name="VidaUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.0
+offset_top = -28.0
+offset_right = 53.0
+offset_bottom = 12.0
+
+[node name="HealthBar" type="ProgressBar" parent="VidaUI"]
+layout_mode = 0
+offset_left = -13.0
+offset_top = 27.0
+offset_right = 53.0
+offset_bottom = 34.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jh6hw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_akb6v")
+value = 50.0
+show_percentage = false
+
+[node name="VidaNumeroLabel" type="Label" parent="VidaUI"]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 40.0
+offset_bottom = 28.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_kdgmj")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 2

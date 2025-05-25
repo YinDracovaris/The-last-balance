@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
-@export var vida: int = 50
+@export var vida: int = 200
 @onready var sprite = $AnimatedSprite2D
 
 func _ready():
+	sprite.flip_h = true
 	sprite.play("Idle")
 	get_parent().get_node("Protagonista").connect("ataque_realizado", Callable(self, "_verificar_ataque"))
 	print("Enemigo inicializado en posición:", position)

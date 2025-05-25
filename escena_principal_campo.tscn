@@ -630,4 +630,10 @@ position = Vector2(320, 320)
 position = Vector2(256, 320)
 
 [node name="Enemigo1" parent="." instance=ExtResource("2_hcujj")]
-position = Vector2(512, 320)
+position = Vector2(896, 320)
+
+[node name="Enemigo2" parent="." instance=ExtResource("2_hcujj")]
+position = Vector2(896, 384)
+
+[node name="Enemigo3" parent="." instance=ExtResource("2_hcujj")]
+position = Vector2(896, 256)

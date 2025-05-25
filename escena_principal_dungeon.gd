@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var protagonista = $Protagonista
-@onready var enemigos = [$Enemigo1]  # Agregar más enemigos si es necesario
+@onready var enemigos = [$Enemigo1, $Enemigo2, $Enemigo3]  # Agregar más enemigos si es necesario
 @onready var items = [$Speed_potion]  # Agregar más objetos si es necesario
 
 func _ready():
@@ -22,7 +22,9 @@ func _verificar_ataque(posicion_ataque):
 			if enemigo.position == posicion_ataque:
 				print("Enemigo alcanzado, aplicando daño.")
 				enemigo.recibir_daño(50)
-				
+				if enemigo.vida <= 0:
+					enemigos.erase(enemigo)
+
 func _verificar_ataque2(posicion_ataque):
 	print("Verificando si hay enemigos en:", posicion_ataque)
 	if enemigos.size() > 0:
@@ -31,6 +33,8 @@ func _verificar_ataque2(posicion_ataque):
 			if enemigo.position == posicion_ataque:
 				print("Enemigo alcanzado, aplicando daño.")
 				enemigo.recibir_daño(100)
+				if enemigo.vida <= 0:
+					enemigos.erase(enemigo)
 				
 func _verificar_ataque3(posicion_ataque):
 	print("Verificando si hay enemigos en:", posicion_ataque)
@@ -40,6 +44,8 @@ func _verificar_ataque3(posicion_ataque):
 			if enemigo.position == posicion_ataque:
 				print("Enemigo alcanzado, aplicando daño.")
 				enemigo.recibir_daño(200)
+				if enemigo.vida <= 0:
+					enemigos.erase(enemigo)
 
 func es_posicion_valida(pos: Vector2) -> bool:
 	# Evita que el protagonista se mueva a donde hay enemigos
