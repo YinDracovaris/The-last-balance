@@ -10,14 +10,19 @@ extends CharacterBody2D
 
 var objetivo: Vector2  # Posición futura en la cuadrícula
 var seleccionado: bool = true  # Está activo desde el inicio
-
+var en_turno: bool = true
+var movimientos_max_por_turno: int = 3
+var ataque_max_por_turno: int = 1
+var movimientos_iniciales_por_turno: int = 3 # Valor base para reiniciar
+var ataques_iniciales_por_turno: int = 1
 # Control del power-up
 var pasos_extra: int = 1  # Multiplicador de movimiento normal (1 casilla)
 var turnos_restantes: int = 0  # Turnos con el efecto activo
 
-signal ataque_realizado(posicion_ataque)
-signal ataque_realizado2(posicion_ataque)
-signal ataque_realizado3(posicion_ataque)
+signal ataque_realizado
+signal ataque_realizado2
+signal ataque_realizado3
+signal turno_del_protagonista_terminado
 
 func _ready():
 	objetivo = position.snapped(grid_size)  # Asegurar que empiece en la cuadrícula
@@ -36,25 +41,75 @@ func _ready():
 		actualizar_texto_vida()
 	else:
 		print_rich("[color=red]Error:[/color] No se encontró el nodo VidaNumeroLabel. Verifica la ruta.")
+		
+	movimientos_max_por_turno = movimientos_iniciales_por_turno
+	ataque_max_por_turno = ataques_iniciales_por_turno
 
 func _input(event):
-	if event is InputEventKey and event.pressed:
+	if not en_turno:
+		return
+
+	# Procesar movimiento
+	if event is InputEventKey and event.pressed and movimientos_max_por_turno > 0:
+		var se_movio = false
 		if event.keycode == KEY_W:
 			mover(Vector2(0, -1))
+			se_movio = true
 		elif event.keycode == KEY_S:
 			mover(Vector2(0, 1))
+			se_movio = true
 		elif event.keycode == KEY_A:
 			sprite.flip_h = true
 			mover(Vector2(-1, 0))
+			se_movio = true
 		elif event.keycode == KEY_D:
 			mover(Vector2(1, 0))
 			sprite.flip_h = false
-		elif event.keycode == KEY_F:
+			se_movio = true
+		
+		if se_movio:
+			movimientos_max_por_turno -= 1
+			print("Protagonista: Movimientos restantes: ", movimientos_max_por_turno)
+			_verificar_fin_de_turno() # <<--- AÑADIR ESTA LLAMADA
+			return # Para que una pulsación de tecla no cuente para movimiento Y ataque a la vez
+
+	# Procesar ataque (solo si aún está en turno)
+	if en_turno and event is InputEventKey and event.pressed and ataque_max_por_turno > 0:
+		var se_ataco = false
+		if event.keycode == KEY_F:
 			atacar()
+			se_ataco = true
 		elif event.keycode == KEY_E:
 			atacar2()
+			se_ataco = true
 		elif event.keycode == KEY_Q:
 			atacar3()
+			se_ataco = true
+		
+		if se_ataco:
+			ataque_max_por_turno -= 1
+			print("Protagonista: Ataques restantes: ", ataque_max_por_turno)
+			_verificar_fin_de_turno()
+			
+func _verificar_fin_de_turno():
+	# El turno termina si se agotan los movimientos Y los ataques,
+	if movimientos_max_por_turno <= 0 and ataque_max_por_turno <= 0:
+		if en_turno: # Solo finalizar si realmente estaba en turno
+			finalizar_turno()
+
+func finalizar_turno():
+	print("Protagonista: Finalizando turno.")
+	en_turno = false
+	# Aquí podrías añadir lógica adicional, como deshabilitar UI específica del jugador.
+	emit_signal("turno_del_protagonista_terminado")
+	# Los contadores se resetearán en iniciar_turno()
+
+func iniciar_turno():
+	print("Protagonista: Iniciando turno.")
+	en_turno = true
+	movimientos_max_por_turno = movimientos_iniciales_por_turno
+	ataque_max_por_turno = ataques_iniciales_por_turno
+	print("Acciones restauradas: Movimientos=", movimientos_max_por_turno, ", Ataques=", ataque_max_por_turno)
 
 func mover(direccion: Vector2):
 	var nueva_posicion = objetivo + direccion * grid_size * pasos_extra
@@ -81,28 +136,25 @@ func mover_animacion():
 func atacar():
 	print("Función atacar() llamada")
 	sprite.play("Attack")
-	await sprite.animation_finished  # Espera a que termine la animación
-	var posicion_ataque = position + Vector2(grid_size.x, 0)
-	print("Atacando en posición:", posicion_ataque)
-	emit_signal("ataque_realizado", posicion_ataque)
+	await sprite.animation_finished # Espera a que termine la animación
+	emit_signal("ataque_realizado")
+	print("Señal ataque_realizado emitida.")
 	sprite.play("Idle")
 	
 func atacar2():
 	print("Función atacar2() llamada")
 	sprite.play("Attack")
-	await sprite.animation_finished  # Espera a que termine la animación
-	var posicion_ataque = position + Vector2(grid_size.x, 0)
-	print("Atacando en posición:", posicion_ataque)
-	emit_signal("ataque_realizado2", posicion_ataque)
+	await sprite.animation_finished # Espera a que termine la animación
+	emit_signal("ataque_realizado2")
+	print("Señal ataque_realizado2 emitida.")
 	sprite.play("Idle")
 	
 func atacar3():
 	print("Función atacar3() llamada")
 	sprite.play("Attack")
-	await sprite.animation_finished  # Espera a que termine la animación
-	var posicion_ataque = position + Vector2(grid_size.x, 0)
-	print("Atacando en posición:", posicion_ataque)
-	emit_signal("ataque_realizado3", posicion_ataque)
+	await sprite.animation_finished # Espera a que termine la animación
+	emit_signal("ataque_realizado3")
+	print("Señal ataque_realizado3 emitida.")
 	sprite.play("Idle")
 
 # Método para recibir el efecto del objeto

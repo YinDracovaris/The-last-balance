@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=3 uid="uid://ei7ibvytee3e"]
 
-[ext_resource type="Script" uid="uid://bm0f3lsrccml4" path="res://enemigo_2.gd" id="1_smqxt"]
+[ext_resource type="Script" uid="uid://ovycwo725m7o" path="res://enemigo_boss.gd" id="1_mvttf"]
 [ext_resource type="Texture2D" uid="uid://bct4ovayhjnbi" path="res://Sprites/Attack_Boss.png" id="2_qgfri"]
 [ext_resource type="Texture2D" uid="uid://dd6skud0h6cd5" path="res://Sprites/Death_Boss.png" id="3_mvttf"]
 [ext_resource type="Texture2D" uid="uid://tp3o3gk6yl3x" path="res://Sprites/Hurt_Boss.png" id="4_7c2wl"]
@@ -103,7 +103,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_34iek")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack",
 "speed": 5.0
 }, {
@@ -187,13 +187,13 @@ bg_color = Color(0.870251, 0.0988599, 1.92523e-07, 1)
 
 [node name="EnemigoBoss" type="CharacterBody2D"]
 position = Vector2(13, 0)
-script = ExtResource("1_smqxt")
+script = ExtResource("1_mvttf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(36, 20)
 scale = Vector2(1.99219, 1.82422)
 sprite_frames = SubResource("SpriteFrames_8jufk")
-animation = &"Death"
+animation = &"Walk"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

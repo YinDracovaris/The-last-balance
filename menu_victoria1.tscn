@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://cl8kq4hqt2ncc"]
+
+[ext_resource type="FontFile" uid="uid://o80mfqk5bsi0" path="res://fonts/aAsianNinja.ttf" id="1_jfe2h"]
+
+[node name="menu_victoria" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -21.0
+offset_top = -14.0
+offset_right = 1293.0
+offset_bottom = 732.0
+color = Color(0.880998, 0.798686, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 141.0
+offset_right = 795.0
+offset_bottom = 242.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_jfe2h")
+theme_override_font_sizes/font_size = 100
+text = "Victoria"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="boton_siguiente_nivel" type="Button" parent="."]
+layout_mode = 0
+offset_left = 530.0
+offset_top = 310.0
+offset_right = 746.0
+offset_bottom = 354.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_jfe2h")
+theme_override_font_sizes/font_size = 35
+text = "Siguiente nivel"
+
+[node name="boton_menu_principal" type="Button" parent="."]
+offset_left = 530.0
+offset_top = 395.0
+offset_right = 746.0
+offset_bottom = 439.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_jfe2h")
+theme_override_font_sizes/font_size = 35
+text = "Siguiente nivel"
