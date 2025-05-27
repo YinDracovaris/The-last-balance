@@ -630,20 +630,14 @@ position = Vector2(256, 320)
 [node name="Enemigo1" parent="." instance=ExtResource("2_hcujj")]
 position = Vector2(896, 320)
 script = ExtResource("6_my85n")
-vida = 70
-vida_maxima = 70
 
 [node name="Enemigo2" parent="." instance=ExtResource("2_hcujj")]
 position = Vector2(896, 384)
 script = ExtResource("6_my85n")
-vida = 70
-vida_maxima = 70
 
 [node name="Enemigo3" parent="." instance=ExtResource("2_hcujj")]
 position = Vector2(896, 256)
 script = ExtResource("6_my85n")
-vida = 70
-vida_maxima = 70
 
 [node name="PauseMenu" parent="." instance=ExtResource("7_7sciy")]
 offset_left = 490.0

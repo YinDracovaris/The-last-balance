@@ -14,10 +14,6 @@ func _ready():
 	# Inicializar lista de enemigos vivos
 	if $Enemigo1 and $Enemigo1 is CharacterBody2D: # Verifica que el nodo exista y sea del tipo esperado
 		enemigos_vivos.append($Enemigo1)
-	if $Enemigo2 and $Enemigo2 is CharacterBody2D:
-		enemigos_vivos.append($Enemigo2)
-	if $Enemigo3 and $Enemigo3 is CharacterBody2D:
-		enemigos_vivos.append($Enemigo3)
 
 	# Conexiones del Protagonista
 	if protagonista:
@@ -151,6 +147,9 @@ func _on_Protagonista_ataque_realizado():
 	if enemigo_objetivo.vida <= 0:
 		print(enemigo_objetivo.name, "ha sido derrotado.")
 		enemigos_vivos.erase(enemigo_objetivo) # Quitar de la lista de vivos
+		
+		if enemigos_vivos.size() == 0:
+			get_tree().change_scene_to_file("res://Menu_Principal.tscn")
 
 
 func _on_Protagonista_ataque_realizado2():
@@ -180,6 +179,9 @@ func _on_Protagonista_ataque_realizado2():
 	if enemigo_objetivo.vida <= 0:
 		print(enemigo_objetivo.name, "ha sido derrotado.")
 		enemigos_vivos.erase(enemigo_objetivo) # Quitar de la lista de vivos
+		
+		if enemigos_vivos.size() == 0:
+			get_tree().change_scene_to_file("res://Menu_Principal.tscn")
 
 func _on_Protagonista_ataque_realizado3():
 	# ... (la lógica que tenías en _verificar_ataque se mantiene) ...
@@ -208,6 +210,9 @@ func _on_Protagonista_ataque_realizado3():
 	if enemigo_objetivo.vida <= 0:
 		print(enemigo_objetivo.name, "ha sido derrotado.")
 		enemigos_vivos.erase(enemigo_objetivo) # Quitar de la lista de vivos
+		
+		if enemigos_vivos.size() == 0:
+			get_tree().change_scene_to_file("res://Menu_Principal.tscn")
 
 func es_posicion_valida(pos: Vector2) -> bool:
 	# Evita que el protagonista se mueva a donde hay enemigos

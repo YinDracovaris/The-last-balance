@@ -195,3 +195,4 @@ func morir():
 	sprite.play("Death")
 	await sprite.animation_finished
 	queue_free()
+	get_tree().change_scene_to_file("res://Menu_Principal.tscn")

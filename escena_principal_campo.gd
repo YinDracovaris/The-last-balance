@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var protagonista = $Protagonista
-var enemigos_vivos: Array[CharacterBody2D] = [] 
+var enemigos_vivos: Array[CharacterBody2D] = []
 @onready var items = []  # Agregar más objetos si es necesario
 @onready var pause_menu_instance: Control = $PauseMenu
 var grid_size = Vector2(64, 64)
@@ -151,6 +151,10 @@ func _on_Protagonista_ataque_realizado():
 	if enemigo_objetivo.vida <= 0:
 		print(enemigo_objetivo.name, "ha sido derrotado.")
 		enemigos_vivos.erase(enemigo_objetivo) # Quitar de la lista de vivos
+		
+		if enemigos_vivos.size() == 0:
+			get_tree().change_scene_to_file("res://Menu_Principal.tscn")
+		
 
 
 func _on_Protagonista_ataque_realizado2():
@@ -180,6 +184,9 @@ func _on_Protagonista_ataque_realizado2():
 	if enemigo_objetivo.vida <= 0:
 		print(enemigo_objetivo.name, "ha sido derrotado.")
 		enemigos_vivos.erase(enemigo_objetivo) # Quitar de la lista de vivos
+		
+		if enemigos_vivos.size() == 0:
+			get_tree().change_scene_to_file("res://Menu_Principal.tscn")
 
 func _on_Protagonista_ataque_realizado3():
 	# ... (la lógica que tenías en _verificar_ataque se mantiene) ...
@@ -208,6 +215,9 @@ func _on_Protagonista_ataque_realizado3():
 	if enemigo_objetivo.vida <= 0:
 		print(enemigo_objetivo.name, "ha sido derrotado.")
 		enemigos_vivos.erase(enemigo_objetivo) # Quitar de la lista de vivos
+		
+		if enemigos_vivos.size() == 0:
+			get_tree().change_scene_to_file("res://Menu_Principal.tscn")
 
 func es_posicion_valida(pos: Vector2) -> bool:
 	# Evita que el protagonista se mueva a donde hay enemigos

@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @export var grid_size: Vector2 = Vector2(64, 64)  # Tamaño de las casillas
 @onready var sprite = $AnimatedSprite2D  # Referencia al sprite
-@export var vida: int = 70
-@export var vida_maxima: int = 70
+@export var vida: int = 200
+@export var vida_maxima: int = 200
 @onready var health_bar: ProgressBar = $VidaUI/HealthBar
 @onready var vida_numero_label: Label = $VidaUI/VidaNumeroLabel
 
